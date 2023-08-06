@@ -1,6 +1,7 @@
 <script setup lang="ts">
-import { ref } from 'vue';
+import { inject, onMounted, ref } from 'vue';
 import { filesize } from 'filesize';
+import type { VueCookies } from 'vue-cookies';
 import vueFilePond from 'vue-filepond';
 import Title from './components/Title.vue';
 // @ts-ignore
@@ -10,7 +11,7 @@ import FilePondPluginFileValidateSize from 'filepond-plugin-file-validate-size/d
 
 const FilePond = vueFilePond(FilePondPluginImagePreview, FilePondPluginFileValidateSize);
 
-let fileData = ref<any[]>([]);
+const fileData = ref<any[]>([]);
 
 const processFile = (file: any, progress: any) => {
     const serverId: any = JSON.parse(progress.serverId);
@@ -23,6 +24,13 @@ const processFile = (file: any, progress: any) => {
     };
     fileData.value.push(compose);
 };
+
+const cookies = inject<VueCookies>('$cookies')!;
+
+onMounted(() => {
+    cookies.set('something', { message: 'hello world' });
+    console.log(cookies.get('something'));
+});
 </script>
 
 <template>

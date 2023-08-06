@@ -8,9 +8,6 @@
         "build": "vue-tsc && vite build",
         "preview": "vite preview"
     },
-    "dependencies": {
-        "vue": "^3.3.4"
-    },
     "devDependencies": {
         "@vitejs/plugin-vue": "^4.2.3",
         "autoprefixer": "^10.4.14",
@@ -23,6 +20,8 @@
         "tailwindcss": "^3.3.3",
         "typescript": "^5.0.2",
         "vite": "^4.4.5",
+        "vue": "^3.3.4",
+        "vue-cookies": "^1.8.3",
         "vue-filepond": "^7.0.3",
         "vue-tsc": "^1.8.5"
     },
