@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { inject, onMounted, reactive, watch } from 'vue';
+import { customAlphabet } from 'nanoid';
 import { filesize } from 'filesize';
 import type { VueCookies } from 'vue-cookies';
 import vueFilePond from 'vue-filepond';
@@ -12,6 +13,7 @@ import FilePondPluginFileValidateSize from 'filepond-plugin-file-validate-size/d
 const FilePond = vueFilePond(FilePondPluginImagePreview, FilePondPluginFileValidateSize);
 const cookies = inject<VueCookies>('$cookies')!;
 const files = reactive<any[]>([]);
+const nanoid = customAlphabet('0123456789abcdef', 8);
 
 const processFile = (file: any, progress: any) => {
     const serverId: any = JSON.parse(progress.serverId);
@@ -27,15 +29,16 @@ const processFile = (file: any, progress: any) => {
 
 onMounted(() => {
     cookies.keys().forEach((key) => {
-        if (!key.match(/^file\_[0-9]+$/)) return;
+        if (!key.match(/^file\_[0-9a-f]+$/)) return;
 
         files.push(cookies.get(key));
     });
 
     watch(files, () => {
         const index = files.length - 1;
+        const id = nanoid();
 
-        cookies.set(`file_${index}`, files[index]);
+        cookies.set(`file_${id}`, files[index]);
     });
 });
 </script>
