@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { inject, onMounted, ref } from 'vue';
+import { inject, onMounted, reactive, watch } from 'vue';
 import { filesize } from 'filesize';
 import type { VueCookies } from 'vue-cookies';
 import vueFilePond from 'vue-filepond';
@@ -10,8 +10,8 @@ import FilePondPluginImagePreview from 'filepond-plugin-image-preview/dist/filep
 import FilePondPluginFileValidateSize from 'filepond-plugin-file-validate-size/dist/filepond-plugin-file-validate-size.esm.js';
 
 const FilePond = vueFilePond(FilePondPluginImagePreview, FilePondPluginFileValidateSize);
-
-const fileData = ref<any[]>([]);
+const cookies = inject<VueCookies>('$cookies')!;
+const files = reactive<any[]>([]);
 
 const processFile = (file: any, progress: any) => {
     const serverId: any = JSON.parse(progress.serverId);
@@ -22,14 +22,21 @@ const processFile = (file: any, progress: any) => {
         url: serverId.data.url,
         _file: file,
     };
-    fileData.value.push(compose);
+    files.push(compose);
 };
 
-const cookies = inject<VueCookies>('$cookies')!;
-
 onMounted(() => {
-    cookies.set('something', { message: 'hello world' });
-    console.log(cookies.get('something'));
+    cookies.keys().forEach((key) => {
+        if (!key.match(/^file\_[0-9]+$/)) return;
+
+        files.push(cookies.get(key));
+    });
+
+    watch(files, () => {
+        const index = files.length - 1;
+
+        cookies.set(`file_${index}`, files[index]);
+    });
 });
 </script>
 
@@ -55,7 +62,7 @@ onMounted(() => {
             />
         </div>
         <div class="mt-4 font-fira_code">
-            <div class="collapse bg-base-200 rounded-md mt-4 w-full" v-if="fileData" v-for="file in fileData">
+            <div class="collapse bg-base-200 rounded-md mt-4 w-full" v-if="files.length" v-for="file in files">
                 <input type="checkbox" />
                 <div class="collapse-title text-lg lg:text-base font-medium text-ellipsis break-all">
                     {{ file.fileName }}
