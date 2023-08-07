@@ -17,11 +17,16 @@ const nanoid = customAlphabet('0123456789abcdef', 8);
 
 const processFile = (file: any, progress: any) => {
     const serverId: any = JSON.parse(progress.serverId);
+
+    const expiredAt = new Date();
+    expiredAt.setHours(expiredAt.getHours() + 1);
+
     const compose: any = {
         fileName: progress.filename,
         fileSize: filesize(progress.fileSize, { base: 10 }),
         fileType: progress.fileType,
         url: serverId.data.url,
+        expiredAt,
         _file: file,
     };
     files.push(compose);
@@ -96,8 +101,11 @@ onMounted(() => {
                                     </td>
                                 </tr>
                                 <tr>
-                                    <th>Expiration</th>
-                                    <td>1 hour</td>
+                                    <th>Expired after</th>
+                                    <td>
+                                        {{ Math.floor((Number(new Date(file.expiredAt)) - Date.now()) / 60 / 1000) }}
+                                        minute(s)
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
