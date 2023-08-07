@@ -1,28 +1,60 @@
 <script setup lang="ts">
-import { ref } from 'vue';
+import { inject, onMounted, reactive, watch } from 'vue';
+import { customAlphabet } from 'nanoid';
 import { filesize } from 'filesize';
+import type { VueCookies } from 'vue-cookies';
 import vueFilePond from 'vue-filepond';
-import Title from './components/Title.vue';
+
 // @ts-ignore
 import FilePondPluginImagePreview from 'filepond-plugin-image-preview/dist/filepond-plugin-image-preview.esm.js';
 // @ts-ignore
 import FilePondPluginFileValidateSize from 'filepond-plugin-file-validate-size/dist/filepond-plugin-file-validate-size.esm.js';
 
+import Title from './components/Title.vue';
+import FileCard from './components/FileCard.vue';
+
 const FilePond = vueFilePond(FilePondPluginImagePreview, FilePondPluginFileValidateSize);
+const cookies = inject<VueCookies>('$cookies')!;
+const nanoid = customAlphabet('0123456789abcdef', 8);
+const files = reactive<
+    {
+        url: string;
+        fileName: string;
+        fileSize: unknown;
+        fileType: string;
+        expiredAt: string;
+    }[]
+>([]);
 
-let fileData = ref<any[]>([]);
-
-const processFile = (file: any, progress: any) => {
+const processFile = (_: any, progress: any) => {
     const serverId: any = JSON.parse(progress.serverId);
-    const compose: any = {
+
+    const expiredAt = new Date();
+    expiredAt.setHours(expiredAt.getHours() + 1);
+
+    files.push({
         fileName: progress.filename,
         fileSize: filesize(progress.fileSize, { base: 10 }),
         fileType: progress.fileType,
         url: serverId.data.url,
-        _file: file,
-    };
-    fileData.value.push(compose);
+        expiredAt: expiredAt.toISOString(),
+    });
 };
+
+onMounted(() => {
+    cookies.keys().forEach((key) => {
+        if (!key.match(/^file\_[0-9a-f]+$/)) return;
+
+        files.push(cookies.get(key));
+    });
+
+    watch(files, () => {
+        const index = files.length - 1;
+        const id = nanoid();
+
+        cookies.set(`file_${id}`, files[index]);
+    });
+});
 </script>
 
 <template>
@@ -47,45 +79,7 @@ const processFile = (file: any, progress: any) => {
             />
         </div>
         <div class="mt-4 font-fira_code">
-            <div class="collapse bg-base-200 rounded-md mt-4 w-full" v-if="fileData" v-for="file in fileData">
-                <input type="checkbox" />
-                <div class="collapse-title text-lg lg:text-base font-medium text-ellipsis break-all">
-                    {{ file.fileName }}
-                </div>
-                <div class="collapse-content text-left">
-                    <div class="overflow-x-auto">
-                        <table class="table">
-                            <tbody>
-                                <tr>
-                                    <th>File size</th>
-                                    <td>{{ file.fileSize }}</td>
-                                </tr>
-                                <tr>
-                                    <th class="text-ellipsis break-all">File type</th>
-                                    <td>{{ file.fileType }}</td>
-                                </tr>
-                                <tr>
-                                    <th>File URL</th>
-                                    <td>
-                                        <div class="tooltip" data-tip="or right click and copy">
-                                            <a
-                                                class="text-ellipsis break-all font-bold underline"
-                                                :href="file.url"
-                                                target="_blank"
-                                                >Click to visit</a
-                                            >
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th>Expiration</th>
-                                    <td>1 hour</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
+            <FileCard v-if="files.length" v-for="file in files" v-bind="file" />
         </div>
     </div>
 </template>
