@@ -9,22 +9,22 @@
     "preview": "vite preview"
   },
   "devDependencies": {
-    "@vitejs/plugin-vue": "4.4.0",
+    "@vitejs/plugin-vue": "4.5.1",
     "autoprefixer": "10.4.16",
     "daisyui": "3.9.4",
     "filepond": "4.30.4",
     "filepond-plugin-file-validate-size": "2.2.8",
     "filepond-plugin-image-preview": "4.6.11",
     "filesize": "10.1.0",
-    "nanoid": "5.0.2",
+    "nanoid": "5.0.3",
     "postcss": "8.4.31",
     "tailwindcss": "3.3.5",
-    "typescript": "5.2.2",
+    "typescript": "5.3.2",
     "vite": "4.5.0",
-    "vue": "3.3.7",
+    "vue": "3.3.9",
     "vue-cookies": "1.8.3",
     "vue-filepond": "7.0.4",
-    "vue-tsc": "1.8.22"
+    "vue-tsc": "1.8.24"
   },
   "prettier": {
     "tabWidth": 4,
