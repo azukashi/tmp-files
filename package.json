@@ -11,7 +11,7 @@
   "devDependencies": {
     "@vitejs/plugin-vue": "4.5.1",
     "autoprefixer": "10.4.16",
-    "daisyui": "3.9.4",
+    "daisyui": "4.4.17",
     "filepond": "4.30.4",
     "filepond-plugin-file-validate-size": "2.2.8",
     "filepond-plugin-image-preview": "4.6.11",
