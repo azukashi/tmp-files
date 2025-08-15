@@ -4,6 +4,7 @@ import { customAlphabet } from 'nanoid';
 import { filesize } from 'filesize';
 import type { VueCookies } from 'vue-cookies';
 import vueFilePond from 'vue-filepond';
+import { Icon } from '@iconify/vue';
 
 // @ts-ignore
 import FilePondPluginImagePreview from 'filepond-plugin-image-preview/dist/filepond-plugin-image-preview.esm.js';
@@ -60,26 +61,43 @@ onMounted(() => {
 <template>
     <div>
         <Title />
-        <div>
-            <FilePond
-                name="file"
-                ref="pond"
-                :credits="false"
-                label-idle='Drag & Drop your files or <span class="filepond--label-action"> Browse </span>'
-                :allow-multiple="true"
-                :allow-browse="true"
-                :allow-remove="true"
-                :allow-revert="false"
-                max-file-size="100MB"
-                accepted-file-types="*"
-                server="https://tmpfiles.org/api/v1/upload"
-                :instant-upload="false"
-                @processfile="processFile"
-                class="mt-4"
-            />
-        </div>
-        <div class="mt-4 font-fira_code">
-            <FileCard v-if="files.length" v-for="file in files" v-bind="file" />
+        <div
+            class="columns-1 md:columns-2 gap-3"
+            :class="{ 'md:columns-1': files.length >= 5, 'md:columns-2': files.length <= 5 }"
+        >
+            <div class="bg-base-200 rounded-md p-3 mb-2">
+                <div class="border-2 h-auto rounded-md border-dashed border-gray-700">
+                    <FilePond
+                        name="file"
+                        ref="pond"
+                        :credits="false"
+                        label-idle='Drag & Drop your files or <span class="filepond--label-action"> Browse </span>'
+                        :allow-multiple="true"
+                        :allow-browse="true"
+                        :allow-remove="true"
+                        :allow-revert="false"
+                        max-file-size="100MB"
+                        accepted-file-types="*"
+                        server="https://tmpfiles.org/api/v1/upload"
+                        :instant-upload="false"
+                        @processfile="processFile"
+                        class="p-12"
+                    />
+                </div>
+            </div>
+            <div class="font-fira_code bg-base-200 rounded-md p-3 flex flex-col gap-2">
+                <FileCard v-if="files.length" v-for="file in files" v-bind="file" />
+                <p v-if="files.length" class="text-xs py-2 border-t border-dashed border-gray-600">
+                    These file lists are saved to local cookies. You can't see it on another browser or computer.
+                </p>
+                <div
+                    v-if="!files.length"
+                    class="h-full flex flex-col gap-2 py-6 align-middle items-center justify-center border-2 border-dashed border-gray-700 rounded-md"
+                >
+                    <Icon class="size-12" icon="mdi:file-outline" />
+                    Files you upload will appear here
+                </div>
+            </div>
         </div>
     </div>
 </template>

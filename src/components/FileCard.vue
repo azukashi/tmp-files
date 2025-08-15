@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import { Icon } from '@iconify/vue';
 import { computed } from 'vue';
 
 const props = defineProps<{
@@ -14,42 +15,53 @@ const expiredAfter = computed(() => {
 
     return `${minute} minute${minute > 1 ? 's' : ''}`;
 });
+
+function injectDownloadPath(originalUrl: string): string {
+    try {
+        const url = new URL(originalUrl);
+        const pathSegments = url.pathname.split('/').filter((segment) => segment.length > 0);
+        pathSegments.unshift('dl');
+        url.pathname = '/' + pathSegments.join('/');
+
+        return url.href;
+    } catch (error) {
+        console.error('Invalid URL provided:', originalUrl);
+        return originalUrl;
+    }
+}
 </script>
 
 <template>
-    <div class="collapse bg-base-200 rounded-md mt-4 w-full">
-        <input type="checkbox" />
-        <div class="collapse-title text-lg lg:text-base font-medium text-ellipsis break-all">
-            {{ fileName }}
-        </div>
-        <div class="collapse-content text-left">
-            <div class="overflow-x-auto">
-                <table class="table">
-                    <tbody>
-                        <tr>
-                            <th>File size</th>
-                            <td>{{ fileSize }}</td>
-                        </tr>
-                        <tr>
-                            <th class="text-ellipsis break-all">File type</th>
-                            <td>{{ fileType }}</td>
-                        </tr>
-                        <tr>
-                            <th>File URL</th>
-                            <td>
-                                <div class="tooltip" data-tip="or right click and copy">
-                                    <a class="text-ellipsis break-all font-bold underline" :href="url" target="_blank"
-                                        >Click to visit</a
-                                    >
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th>Expired after</th>
-                            <td>{{ expiredAfter }}</td>
-                        </tr>
-                    </tbody>
-                </table>
+    <div class="bg-base-200 rounded-md w-full border-2 border-dotted border-gray-700">
+        <div
+            class="flex flex-row align-middle items-center justify-between gap-2 px-3 py-2 text-lg lg:text-base text-left font-medium text-ellipsis break-all truncate"
+        >
+            <div class="flex align-middle items-center gap-2 truncate">
+                <div class="size-7">
+                    <img
+                        v-if="fileType === 'image/jpeg' || fileType === 'image/png'"
+                        :src="injectDownloadPath(url)"
+                        class="size-7"
+                        alt="File preview"
+                    />
+                    <Icon v-else class="size-7" icon="mdi:file-outline" />
+                </div>
+                <div class="truncate">
+                    <p class="truncate">{{ fileName }}</p>
+                    <div class="flex gap-4">
+                        <p class="text-clip text-xs hidden md:block">{{ fileType }}</p>
+                        <p class="text-clip text-xs">{{ fileSize }}</p>
+                        <p class="truncate text-xs"><span class="hidden md:inline">Exp. in</span> {{ expiredAfter }}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="flex">
+                <a class="btn btn-sm" :href="injectDownloadPath(url)" target="_blank">
+                    <Icon class="size-4" icon="material-symbols:download" />
+                </a>
+                <a class="btn btn-sm" :href="url" target="_blank">
+                    <Icon class="size-4" icon="majesticons:open-line" />
+                </a>
             </div>
         </div>
     </div>
