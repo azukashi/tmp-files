@@ -1,5 +1,4 @@
 /* Fonts */
-@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@400;600;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=VT323:wght@400&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400&display=swap');
 
@@ -9,8 +8,15 @@
 @tailwind utilities;
 
 #app {
-    max-width: 80vh;
+    max-width: 130vh;
     margin: 0 auto;
     padding: 2rem;
     text-align: center;
 }
+
+/* #title {
+    max-width: 50%;
+    margin: 0 auto;
+    padding: 2rem;
+    text-align: center;
+} */
