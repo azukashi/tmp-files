@@ -1,18 +1,37 @@
-# Vue 3 + TypeScript + Vite
+<a href="https://tmp.micin.life">
+    <img src="https://azukashiic.sirv.com/app/tmp/tmp-icon.png?format=original&q=100" alt="/tmp/fup/" style="float: left; margin: 0 10px 0 0; pointer-events: none;" align="left" height="150" width="150">
+</a>
 
-This template should help get you started developing with Vue 3 and TypeScript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+## 📄 /tmp/fup
 
-## Recommended IDE Setup
+Temporary file upload solution with 1-hour expiration. (powered by tmpfiles.org)
 
--   [VS Code](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+[![Project Version](https://img.shields.io/github/package-json/v/azukashi/tmp-files?logo=node.js&style=for-the-badge)](./package.json)
 
-## Type Support For `.vue` Imports in TS
+## 📂 Usage
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin) to make the TypeScript language service aware of `.vue` types.
+Drag & drop your files, or click browse, and click on the checkmark to start uploading your file. Once successfully uploaded, your files will be available to copy or download in the right side. **Please note that your files will only available in 1 hour.** Your files will be deleted when the expiration timer ends.
 
-If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has also implemented a [Take Over Mode](https://github.com/johnsoncodehk/volar/discussions/471#discussioncomment-1361669) that is more performant. You can enable it by the following steps:
+## ➡️ Developing
 
-1. Disable the built-in TypeScript Extension
-    1. Run `Extensions: Show Built-in Extensions` from VSCode's command palette
-    2. Find `TypeScript and JavaScript Language Features`, right click and select `Disable (Workspace)`
-2. Reload the VSCode window by running `Developer: Reload Window` from the command palette.
+### 🛠️ Requirements
+
+A [Bun](https://bun.sh) >= 1.2.0 setup is recommended.
+
+### 📦 Install dependencies
+
+```sh
+$ bun install
+```
+
+### 🚀 Start development server
+
+```sh
+$ bun run dev
+#
+#  VITE v5.x.x  ready in xx ms
+#
+#  ➜  Local:   http://localhost:5173/
+#  ➜  Network: http://[local_ip]:5173/
+#  ➜  press h to show help
+```
