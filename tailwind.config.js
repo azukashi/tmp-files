@@ -4,7 +4,6 @@ export default {
     theme: {
         extend: {
             fontFamily: {
-                lexend: ['Lexend', 'sans-serif'],
                 vt_323: ['VT323', 'sans-serif'],
                 fira_code: ['Fira Code', 'monospace'],
             },
