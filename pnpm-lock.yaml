@@ -24,8 +24,8 @@ devDependencies:
     specifier: 4.6.11
     version: 4.6.11(filepond@4.30.4)
   filesize:
-    specifier: 10.1.0
-    version: 10.1.0
+    specifier: 11.0.2
+    version: 11.0.2
   nanoid:
     specifier: 5.0.9
     version: 5.0.9
@@ -915,8 +915,8 @@ packages:
     resolution: {integrity: sha512-FCwsMvG9iiEs6uobdDrTaKsCgsqys0NuLgPPD8n37AYVYBiiDkrPkk9MSIU5rT2FahYcL1bScYI9huIPtlzqyA==}
     dev: true
 
-  /filesize@10.1.0:
-    resolution: {integrity: sha512-GTLKYyBSDz3nPhlLVPjPWZCnhkd9TrrRArNcy8Z+J2cqScB7h2McAzR6NBX6nYOoWafql0roY8hrocxnZBv9CQ==}
+  /filesize@11.0.2:
+    resolution: {integrity: sha512-s/iAeeWLk5BschUIpmdrF8RA8lhFZ/xDZgKw1Tan72oGws1/dFGB06nYEiyyssWUfjKNQTNRlrwMVjO9/hvXDw==}
     engines: {node: '>= 10.4.0'}
     dev: true
 

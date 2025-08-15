@@ -15,7 +15,7 @@
     "filepond": "4.30.4",
     "filepond-plugin-file-validate-size": "2.2.8",
     "filepond-plugin-image-preview": "4.6.11",
-    "filesize": "10.1.0",
+    "filesize": "11.0.2",
     "nanoid": "5.0.9",
     "postcss": "8.4.32",
     "tailwindcss": "3.3.5",
