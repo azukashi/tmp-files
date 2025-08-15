@@ -1,10 +1,10 @@
 <a href="https://tmp.micin.life">
-    <img src="https://azukashiic.sirv.com/app/tmp/tmp-icon.png?format=original&q=100" alt="/tmp/fup/" style="float: left; margin: 0 10px 0 0; pointer-events: none; z-index: 10;" align="left" height="150" width="150">
+    <img src="https://azukashiic.sirv.com/app/tmp/tmp-icon.png?format=original&q=100" alt="/tmp/fup/" style="float: left; margin: 0 10px 0 0; pointer-events: none; z-index: 100;" align="left" height="150" width="150">
 </a>
 
 ## 📄 /tmp/fup
 
-Temporary file upload solution with 1-hour expiration. (powered by tmpfiles.org)
+Temporary file upload solution with 1-hour expiration. (powered by [tmpfiles.org](https://tmpfiles.org))
 
 [![Project Version](https://img.shields.io/github/package-json/v/azukashi/tmp-files?logo=node.js&style=for-the-badge)](./package.json)
 
