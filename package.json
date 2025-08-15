@@ -9,6 +9,7 @@
     "preview": "vite preview"
   },
   "devDependencies": {
+    "@iconify/vue": "5.0.0",
     "@vitejs/plugin-vue": "4.6.2",
     "autoprefixer": "10.4.21",
     "daisyui": "4.12.24",
