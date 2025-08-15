@@ -10,7 +10,7 @@
   },
   "devDependencies": {
     "@iconify/vue": "5.0.0",
-    "@vitejs/plugin-vue": "4.6.2",
+    "@vitejs/plugin-vue": "6.0.1",
     "autoprefixer": "10.4.21",
     "daisyui": "4.12.24",
     "filepond": "4.32.8",
