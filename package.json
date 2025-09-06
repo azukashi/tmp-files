@@ -12,7 +12,7 @@
     "@iconify/vue": "5.0.0",
     "@vitejs/plugin-vue": "4.6.2",
     "autoprefixer": "10.4.21",
-    "daisyui": "4.12.24",
+    "daisyui": "5.1.7",
     "filepond": "4.32.8",
     "filepond-plugin-file-validate-size": "2.2.8",
     "filepond-plugin-image-preview": "4.6.12",
