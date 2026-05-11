@@ -24,7 +24,7 @@
     "vite": "5.4.19",
     "vue": "3.5.18",
     "vue-cookies": "1.8.6",
-    "vue-filepond": "7.0.4",
+    "vue-filepond": "8.0.0",
     "vue-tsc": "3.0.5"
   },
   "prettier": {
