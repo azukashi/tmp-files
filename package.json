@@ -20,7 +20,7 @@
     "nanoid": "5.1.5",
     "postcss": "8.5.6",
     "tailwindcss": "3.4.17",
-    "typescript": "5.9.2",
+    "typescript": "7.0.2",
     "vite": "5.4.19",
     "vue": "3.5.18",
     "vue-cookies": "1.8.6",
