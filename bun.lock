@@ -1,5 +1,6 @@
 {
   "lockfileVersion": 1,
+  "configVersion": 0,
   "workspaces": {
     "": {
       "name": "tmp-upload",
@@ -8,7 +9,7 @@
         "@vitejs/plugin-vue": "4.6.2",
         "autoprefixer": "10.4.21",
         "daisyui": "4.12.24",
-        "filepond": "4.32.8",
+        "filepond": "5.0.2",
         "filepond-plugin-file-validate-size": "2.2.8",
         "filepond-plugin-image-preview": "4.6.12",
         "filesize": "11.0.2",
@@ -249,7 +250,7 @@
 
     "fastq": ["fastq@1.19.1", "", { "dependencies": { "reusify": "^1.0.4" } }, "sha512-GwLTyxkCXjXbxqIhTsMI2Nui8huMPtnxg7krajPJAjnEG/iiOS7i+zCtWGZR9G0NBKbXKh6X9m9UIsYX/N6vvQ=="],
 
-    "filepond": ["filepond@4.32.8", "", {}, "sha512-svcz5lh4YKrV92zogqpOKzVEOXbD/zT7RAHso5Lqp0GujP+kxF2PSl9Tb6AdYVzfMRtoPsExcphJPpBLoo8eYg=="],
+    "filepond": ["filepond@5.0.2", "", {}, "sha512-6mn3RTo8dB4zmkPmc2dCRtgCbj0/fBMU9YXTIEL7+iqfOeLrMU/sIGIBFFNm1nuHlGRCzllEe2TDk03VA/K/9Q=="],
 
     "filepond-plugin-file-validate-size": ["filepond-plugin-file-validate-size@2.2.8", "", { "peerDependencies": { "filepond": ">=3.1.2 <5.x" } }, "sha512-yzb8scATmkWqPTP7oKQz6L8WwJm6Xmgc/fuq6DFGRaLz0I7372BUvBsxagBk/hypMIjvieNzhggm33Y60x3rcw=="],
 
